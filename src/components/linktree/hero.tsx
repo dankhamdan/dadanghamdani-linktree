@@ -119,7 +119,7 @@ export function Hero() {
                 damping: 16,
               }}
               className="absolute -bottom-1 -right-1 inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-background shadow-md"
-              style={{ backgroundColor: "#1D9BF0" }}
+              style={{ backgroundColor: "#3897F0" }}
               title="Akun terverifikasi"
               aria-label="Akun terverifikasi"
             >
@@ -154,7 +154,7 @@ export function Hero() {
             <BadgeCheck
               className="h-6 w-6 sm:h-7 sm:w-7"
               strokeWidth={2.4}
-              style={{ color: "#1D9BF0" }}
+              style={{ color: "#3897F0" }}
             />
           </motion.span>
         </motion.h1>

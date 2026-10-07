@@ -55,7 +55,7 @@ export function SiteFooter() {
               <BadgeCheck
                 className="h-3.5 w-3.5"
                 strokeWidth={2.6}
-                style={{ color: "#1D9BF0" }}
+                style={{ color: "#3897F0" }}
               />
             </motion.span>
             Akun terverifikasi di Indonesia
