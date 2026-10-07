@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
 
 const PROFILE_NAME = "Nadya Zahira";
 const PROFILE_BIO =
@@ -101,12 +101,6 @@ export function Hero() {
             className="avatar-ring absolute -inset-1 rounded-full blur-[2px] opacity-80"
             aria-hidden
           />
-          {/* pulse glow */}
-          <span
-            className="absolute -inset-3 rounded-full bg-brand/20 blur-xl"
-            style={{ animation: "pulse-glow 2.6s ease-in-out infinite" }}
-            aria-hidden
-          />
           <div className="relative h-28 w-28 rounded-full border-4 border-background bg-card shadow-xl sm:h-32 sm:w-32">
             {/* Initials avatar */}
             <div className="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-brand/15 via-card to-accent">
@@ -114,9 +108,26 @@ export function Hero() {
                 {PROFILE_INITIALS}
               </span>
             </div>
-            <span className="absolute -bottom-1 -right-1 inline-flex h-7 w-7 items-center justify-center rounded-full border-2 border-background bg-brand text-brand-foreground shadow-md">
-              <Sparkles className="h-3.5 w-3.5" strokeWidth={2.5} />
-            </span>
+            {/* Blue verified checkmark badge */}
+            <motion.span
+              initial={{ scale: 0, rotate: -45 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{
+                delay: 0.5,
+                type: "spring",
+                stiffness: 400,
+                damping: 16,
+              }}
+              className="absolute -bottom-1 -right-1 inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-background shadow-md"
+              style={{ backgroundColor: "#1D9BF0" }}
+              title="Akun terverifikasi"
+              aria-label="Akun terverifikasi"
+            >
+              <BadgeCheck
+                className="h-5 w-5 text-white"
+                strokeWidth={2.6}
+              />
+            </motion.span>
           </div>
         </motion.div>
 
@@ -124,9 +135,28 @@ export function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl"
+          className="mt-4 flex items-center justify-center gap-1.5 text-2xl font-extrabold tracking-tight sm:text-3xl"
         >
           {PROFILE_NAME}
+          <motion.span
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{
+              delay: 0.45,
+              type: "spring",
+              stiffness: 400,
+              damping: 16,
+            }}
+            className="inline-flex translate-y-[1px]"
+            title="Akun terverifikasi"
+            aria-label="Akun terverifikasi"
+          >
+            <BadgeCheck
+              className="h-6 w-6 sm:h-7 sm:w-7"
+              strokeWidth={2.4}
+              style={{ color: "#1D9BF0" }}
+            />
+          </motion.span>
         </motion.h1>
 
         <motion.p

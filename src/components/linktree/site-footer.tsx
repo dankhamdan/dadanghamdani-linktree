@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
-import { Heart } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -43,18 +43,22 @@ export function SiteFooter() {
           © {year} Nadya Zahira
           <span className="mx-1 hidden h-1 w-1 rounded-full bg-border sm:inline-block" />
           <span className="hidden items-center gap-1 sm:inline-flex">
-            Dibuat dengan
             <motion.span
-              animate={{ scale: [1, 1.18, 1] }}
-              transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", stiffness: 400, damping: 16 }}
               className="inline-flex"
+              title="Akun terverifikasi"
+              aria-label="Akun terverifikasi"
             >
-              <Heart
-                className="h-3 w-3 fill-brand text-brand"
-                strokeWidth={2}
+              <BadgeCheck
+                className="h-3.5 w-3.5"
+                strokeWidth={2.6}
+                style={{ color: "#1D9BF0" }}
               />
             </motion.span>
-            di Indonesia
+            Akun terverifikasi di Indonesia
           </span>
         </p>
       </div>
