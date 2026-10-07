@@ -2,9 +2,10 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
-import { ChevronRight, ShoppingBag, ArrowRight, Lock } from "lucide-react";
+import { ChevronRight, ShoppingBag, ArrowRight, Lock, Loader2 } from "lucide-react";
 import type { Product } from "@/lib/products";
 import { formatRupiah } from "@/lib/products";
+import { useMidtrans } from "@/hooks/use-midtrans";
 
 function calcDiscount(oldPrice: number, price: number): number {
   if (oldPrice <= 0 || price <= 0 || price >= oldPrice) return 0;
@@ -19,8 +20,21 @@ export function ProductCard({ product }: { product: Product }) {
     ? calcDiscount(product.oldPrice!, product.price!)
     : 0;
 
-  // Clicking the card body opens detail; the CTA button opens payment link
+  const { pay, loading } = useMidtrans();
+
   const ctaLabel = isFree ? "Klaim Gratis" : "Beli Sekarang";
+
+  const handleBuy = React.useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      // Produk gratis → lewati ke paymentUrl langsung
+      if (isFree) return;
+      // Produk berbayar → buka Midtrans Snap popup
+      e.preventDefault();
+      if (loading) return;
+      pay({ productId: product.id });
+    },
+    [isFree, loading, pay, product.id]
+  );
 
   return (
     <motion.article
@@ -97,17 +111,28 @@ export function ProductCard({ product }: { product: Product }) {
           {/* Action row */}
           <div className="mt-2.5 flex items-center gap-2">
             <motion.a
-              href={product.paymentUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={isFree ? product.paymentUrl : "#"}
+              onClick={handleBuy}
+              target={isFree ? "_blank" : undefined}
+              rel={isFree ? "noopener noreferrer" : undefined}
               whileTap={{ scale: 0.96 }}
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: loading ? 1 : 1.02 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
-              className="glow-ring inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-brand px-3 py-1.5 text-xs font-semibold text-brand-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:text-[13px]"
+              aria-disabled={loading}
               aria-label={`${ctaLabel} ${product.title}`}
+              className="glow-ring inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-brand px-3 py-1.5 text-xs font-semibold text-brand-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-60 sm:text-[13px]"
             >
-              <ShoppingBag className="h-3.5 w-3.5" strokeWidth={2.4} />
-              {ctaLabel}
+              {loading ? (
+                <>
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" strokeWidth={2.4} />
+                  Memuat...
+                </>
+              ) : (
+                <>
+                  <ShoppingBag className="h-3.5 w-3.5" strokeWidth={2.4} />
+                  {ctaLabel}
+                </>
+              )}
             </motion.a>
             <a
               href={product.url}
@@ -127,7 +152,9 @@ export function ProductCard({ product }: { product: Product }) {
           {/* Trust line — payment security cue */}
           <p className="mt-1.5 flex items-center gap-1 text-[10px] text-muted-foreground/80">
             <Lock className="h-2.5 w-2.5" strokeWidth={2.4} />
-            Pembayaran aman · QRIS, VA, e-wallet, kartu
+            {isFree
+              ? "Produk gratis · Langsung diunduh"
+              : "Pembayaran aman via Midtrans · QRIS, VA, e-wallet, kartu"}
           </p>
         </div>
 

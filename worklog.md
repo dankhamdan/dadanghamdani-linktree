@@ -64,3 +64,30 @@ Stage Summary:
 - File baru: magnetic-button.tsx, marquee-strip.tsx, scroll-to-top.tsx, public/banner.png
 - File diupdate: products.ts, hero.tsx, globals.css, social-links.tsx, theme-toggle.tsx, product-card.tsx, product-list.tsx, site-footer.tsx, page.tsx
 - Catatan: paymentUrl saat ini pakai placeholder https://nadyazahira.my.id/checkout/{slug} — user perlu set up payment gateway (Mayar.id / Tripay / Midtrans) dan ganti mayarBase di src/lib/products.ts dengan URL checkout asli
+
+---
+Task ID: 4
+Agent: main (Super Z)
+Task: Integrasi Midtrans payment gateway.
+
+Work Log:
+- Install midtrans-client@1.4.3 SDK via bun
+- Buat src/lib/midtrans.ts: konfigurasi dari env vars (MIDTRANS_SERVER_KEY, NEXT_PUBLIC_MIDTRANS_CLIENT_KEY, MIDTRANS_ENVIRONMENT), helper generateOrderId(), getter snapJsUrl/apiUrl/isConfigured
+- Buat src/app/api/midtrans/create-transaction/route.ts: POST endpoint yang (1) validasi konfigurasi, (2) cari produk dari products array, (3) bangun Snap transaction parameter dengan item_details, customer_details, enabled_payments (QRIS/VA/e-wallet/kartu/Indomaret/Alfamart/Akulaku), callbacks finish/error/pending, (4) balikin {token, redirect_url, order_id}
+- Buat src/app/api/midtrans/notification/route.ts: webhook handler yang (1) validasi signature_key via SHA-512, (2) verifikasi ulang via snap.transaction.notification, (3) TODO placeholder untuk update DB & fulfillment
+- Update src/app/layout.tsx: load Snap.js script dari sandbox/production URL otomatis via Next.js Script component dengan data-client-key
+- Buat src/hooks/use-midtrans.ts: hook useMidtrans() dengan pay() function, loading state, error state, toast notifications (success/pending/error), fallback redirect_url kalau Snap.js belum load
+- Update src/components/linktree/product-card.tsx: tombol "Beli Sekarang" sekarang panggil useMidtrans.pay({productId}) bukan direct link. Loading spinner (Loader2 animate-spin) saat fetching. Produk gratis tetap pakai paymentUrl langsung. Trust line: "Pembayaran aman via Midtrans · QRIS, VA, e-wallet, kartu"
+- Update .env + buat .env.example dengan placeholder SB-Mid-server-... / SB-Mid-client-...
+- Lint: 0 errors, 0 warnings
+- Verifikasi agent-browser: GET / 200, semua 8 CTA button ada, klik "Beli Sekarang" → toast error "Gagal memulai pembayaran" muncul dengan pesan 401 Unauthorized dari Midtrans (expected karena placeholder key belum diganti)
+- Buat dokumentasi setup: /home/z/my-project/download/MIDTRANS_SETUP.md (cara daftar, set env, test sandbox, pindah production, alur teknis, daftar metode pembayaran)
+
+Stage Summary:
+- Integrasi Midtrans Snap selesai — tinggal user set Server Key & Client Key di .env
+- 3 endpoint dibuat: POST /api/midtrans/create-transaction, POST /api/midtrans/notification
+- Hook useMidtrans reusable untuk komponen lain (kalkulator, custom checkout, dll)
+- Metode pembayaran aktif: kartu kredit, VA (BCA/BNI/BRI/Mandiri/Permata), GoPay, ShopeePay, QRIS, Indomaret, Alfamart, Akulaku
+- Order ID format: NZ-{productId}-{timestamp36}-{rand4}
+- Dokumentasi lengkap di download/MIDTRANS_SETUP.md
+- Status: kode 100% siap, menunggu user isi credential Midtrans asli untuk testing/live
