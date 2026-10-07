@@ -99,9 +99,9 @@ export async function POST(req: NextRequest) {
         name: product.title.slice(0, 50), // Midtrans batas 50 char
         price: grossAmount,
         quantity: 1,
-        brand: "Nadya Zahira",
+        brand: "Dadang Hamdani",
         category: "Digital Product",
-        merchant_name: "Nadya Zahira",
+        merchant_name: "Dadang Hamdani",
       },
     ],
     customer_details: {
@@ -129,9 +129,9 @@ export async function POST(req: NextRequest) {
       "akulaku",
     ],
     callbacks: {
-      finish: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://nadyazahira.my.id"}/payment/finish?order_id=${orderId}`,
-      error: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://nadyazahira.my.id"}/payment/error?order_id=${orderId}`,
-      pending: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://nadyazahira.my.id"}/payment/pending?order_id=${orderId}`,
+      finish: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://dadanghamdani.my.id"}/payment/finish?order_id=${orderId}`,
+      error: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://dadanghamdani.my.id"}/payment/error?order_id=${orderId}`,
+      pending: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://dadanghamdani.my.id"}/payment/pending?order_id=${orderId}`,
     },
   };
 

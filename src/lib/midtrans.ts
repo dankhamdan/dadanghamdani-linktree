@@ -49,10 +49,10 @@ export const snapClientKeyAttr = midtransConfig.clientKey;
 
 /**
  * Generate order ID unik.
- * Format: NZ-{productId}-{timestamp}-{random}
+ * Format: DH-{productId}-{timestamp}-{random}
  */
 export function generateOrderId(productId: string): string {
   const ts = Date.now().toString(36).toUpperCase();
   const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
-  return `NZ-${productId}-${ts}-${rand}`;
+  return `DH-${productId}-${ts}-${rand}`;
 }

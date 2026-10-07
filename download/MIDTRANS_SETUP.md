@@ -1,4 +1,4 @@
-# Setup Midtrans — Nadya Zahira Linktree
+# Setup Midtrans — Dadang Hamdani Linktree
 
 Integrasi pembayaran Midtrans Snap sudah siap. Berikut cara mengaktifkannya.
 
@@ -21,7 +21,7 @@ Edit file `.env` di root project:
 MIDTRANS_ENVIRONMENT=sandbox
 MIDTRANS_SERVER_KEY=SB-Mid-server-GANTI_DENGAN_SERVER_KEY_ANDA
 NEXT_PUBLIC_MIDTRANS_CLIENT_KEY=SB-Mid-client-GANTI_DENGAN_CLIENT_KEY_ANDA
-NEXT_PUBLIC_SITE_URL=https://nadyazahira.my.id
+NEXT_PUBLIC_SITE_URL=https://dadanghamdani.my.id
 ```
 
 Setelah ganti key, restart dev server (Ctrl+C lalu `bun run dev`).
@@ -42,7 +42,7 @@ VA / e-wallet / QRIS test juga tersedia di link di atas.
 
 Di dashboard Midtrans:
 1. **Settings → Configuration → Payment Notification URL**
-2. Isi: `https://nadyazahira.my.id/api/midtrans/notification`
+2. Isi: `https://dadanghamdani.my.id/api/midtrans/notification`
 3. Save
 
 Endpoint `/api/midtrans/notification` sudah dibuat dan akan:

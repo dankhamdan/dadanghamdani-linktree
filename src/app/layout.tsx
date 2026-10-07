@@ -13,11 +13,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Nadya Zahira — Edukasi Web, Aplikasi, AI & Blockchain",
+  title: "Dadang Hamdani — Edukasi Web, Aplikasi, AI & Blockchain",
   description:
     "Edukasi seputar website, aplikasi, AI dan Blockchain. Temukan kursus, ebook, dan source code berkualitas untuk mempercepat perjalanan belajarmu.",
   keywords: [
-    "Nadya Zahira",
+    "Dadang Hamdani",
     "edukasi web",
     "aplikasi mobile",
     "AI",
@@ -26,22 +26,22 @@ export const metadata: Metadata = {
     "source code",
     "kursus online",
   ],
-  authors: [{ name: "Nadya Zahira" }],
+  authors: [{ name: "Dadang Hamdani" }],
   alternates: {
-    canonical: "https://nadyazahira.my.id/",
+    canonical: "https://dadanghamdani.my.id/",
   },
   openGraph: {
-    title: "Nadya Zahira — Edukasi Web, Aplikasi, AI & Blockchain",
+    title: "Dadang Hamdani — Edukasi Web, Aplikasi, AI & Blockchain",
     description:
       "Edukasi seputar website, aplikasi, AI dan Blockchain.",
-    url: "https://nadyazahira.my.id/",
-    siteName: "Nadya Zahira",
+    url: "https://dadanghamdani.my.id/",
+    siteName: "Dadang Hamdani",
     locale: "id_ID",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nadya Zahira",
+    title: "Dadang Hamdani",
     description:
       "Edukasi seputar website, aplikasi, AI dan Blockchain.",
   },

@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://nadyazahira.my.id/sitemap.xml
+Sitemap: https://dadanghamdani.my.id/sitemap.xml

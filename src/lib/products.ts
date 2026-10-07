@@ -14,7 +14,7 @@ export type Product = {
  * Helper: bangun URL payment link Mayar.id berdasarkan slug produk.
  * Ganti base URL dengan akun Mayar milikmu saat production.
  */
-const mayarBase = "https://nadyazahira.my.id/checkout";
+const mayarBase = "https://dadanghamdani.my.id/checkout";
 function paymentUrl(slug: string, id: string): string {
   return `${mayarBase}/${slug}?ref=linktree&p=${id}`;
 }
@@ -24,7 +24,7 @@ function paymentUrl(slug: string, id: string): string {
  *
  * Catatan: URL, gambar, dan harga mengacu pada katalog asli
  * yusrilasrul.site. Ganti dengan aset milikmu sendiri saat
- * halaman ini di-deploy ke nadyazahira.my.id.
+ * halaman ini di-deploy ke dadanghamdani.my.id.
  */
 export const products: Product[] = [
   {

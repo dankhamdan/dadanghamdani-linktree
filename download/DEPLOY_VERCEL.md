@@ -1,4 +1,4 @@
-# Deploy ke Vercel — Nadya Zahira Linktree
+# Deploy ke Vercel — Dadang Hamdani Linktree
 
 Project sudah 100% siap deploy. Build verified ✓, lint clean ✓, semua config sudah disiapkan.
 
@@ -30,7 +30,7 @@ vercel
 # ? Set up and deploy "~/my-project"? [Y/n] y
 # ? Which scope do you want to deploy to? → pilih akunmu
 # ? Link to existing project? [y/N] n
-# ? What's your project's name? → nadyazahira-linktree
+# ? What's your project's name? → dadanghamdani-linktree
 # ? In which directory is your code located? → ./
 # Vercel will detect Next.js automatically
 
@@ -53,11 +53,11 @@ vercel --prod
 cd /home/z/my-project
 git init
 git add .
-git commit -m "Initial commit — Nadya Zahira linktree"
+git commit -m "Initial commit — Dadang Hamdani linktree"
 
 # Buat repo baru di https://github.com/new (jangan centang README)
 # Lalu push:
-git remote add origin https://github.com/USERNAME/nadyazahira-linktree.git
+git remote add origin https://github.com/USERNAME/dadanghamdani-linktree.git
 git branch -M main
 git push -u origin main
 ```
@@ -65,7 +65,7 @@ git push -u origin main
 ## Langkah B: Connect ke Vercel
 
 1. Buka https://vercel.com/new
-2. Pilih repo `nadyazahira-linktree`
+2. Pilih repo `dadanghamdani-linktree`
 3. Vercel auto-detect:
    - **Framework**: Next.js
    - **Build Command**: `next build` (sudah di vercel.json)
@@ -82,17 +82,17 @@ Di Vercel dashboard → project → **Settings → Environment Variables**, tamb
 | `MIDTRANS_ENVIRONMENT` | `sandbox` atau `production` | Production + Preview |
 | `MIDTRANS_SERVER_KEY` | `SB-Mid-server-...` atau `Mid-server-...` | Production + Preview |
 | `NEXT_PUBLIC_MIDTRANS_CLIENT_KEY` | `SB-Mid-client-...` atau `Mid-client-...` | Production + Preview + Development |
-| `NEXT_PUBLIC_SITE_URL` | `https://nadyazahira.my.id` | Production + Preview |
+| `NEXT_PUBLIC_SITE_URL` | `https://dadanghamdani.my.id` | Production + Preview |
 
 ⚠️ **Penting**: `NEXT_PUBLIC_*` harus diset di semua environment (Production, Preview, Development) karena dipakai di client-side.
 
 Setelah set env vars → **Redeploy** dari tab Deployments.
 
-## Langkah D: Hubungkan Domain nadyazahira.my.id
+## Langkah D: Hubungkan Domain dadanghamdani.my.id
 
 1. Vercel dashboard → project → **Settings → Domains**
-2. Add domain → `nadyazahira.my.id`
-3. Add juga `www.nadyazahira.my.id` (redirect ke root)
+2. Add domain → `dadanghamdani.my.id`
+3. Add juga `www.dadanghamdani.my.id` (redirect ke root)
 4. Vercel kasih instruksi DNS — set nameserver atau A record / CNAME di registrar domain (Niagahoster, Namecheap, dll):
 
    **Option 1: Nameserver (recommended)**
@@ -109,7 +109,7 @@ Setelah set env vars → **Redeploy** dari tab Deployments.
 
 ## Langkah E: Test Setelah Deploy
 
-1. Buka `https://nadyazahira.my.id` — halaman linktree harus tampil
+1. Buka `https://dadanghamdani.my.id` — halaman linktree harus tampil
 2. Coba klik **Beli Sekarang** di salah satu produk
 3. Kalau Midtrans key sudah diisi → popup Snap terbuka
 4. Kalau muncul error "Gagal memulai pembayaran" → cek:
@@ -123,7 +123,7 @@ Setelah domain live:
 
 1. Login ke dashboard Midtrans
 2. **Settings → Configuration → Payment Notification URL**
-3. Isi: `https://nadyazahira.my.id/api/midtrans/notification`
+3. Isi: `https://dadanghamdani.my.id/api/midtrans/notification`
 4. Save
 
 ---
@@ -175,10 +175,10 @@ Setiap pull request → Vercel auto-deploy preview deployment (URL sementara unt
 ### Midtrans popup tidak muncul
 - Cek console browser (F12) → ada error?
 - Pastikan `NEXT_PUBLIC_MIDTRANS_CLIENT_KEY` diset di Vercel (bukan cuma `MIDTRANS_SERVER_KEY`)
-- Pastikan domain `nadyazahira.my.id` sudah masuk whitelist Midtrans kalau ada (Settings → Snap Preference)
+- Pastikan domain `dadanghamdani.my.id` sudah masuk whitelist Midtrans kalau ada (Settings → Snap Preference)
 
 ### Domain tidak bisa diakses
-- Cek DNS propagation: https://dnschecker.org/#A,nadyazahira.my.id
+- Cek DNS propagation: https://dnschecker.org/#A,dadanghamdani.my.id
 - Harus resolve ke `76.76.21.21`
 - Tunggu hingga 24 jam kalau baru set DNS
 

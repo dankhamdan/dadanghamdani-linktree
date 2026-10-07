@@ -4,10 +4,10 @@ import * as React from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { BadgeCheck } from "lucide-react";
 
-const PROFILE_NAME = "Nadya Zahira";
+const PROFILE_NAME = "Dadang Hamdani";
 const PROFILE_BIO =
   "Edukasi seputar website, aplikasi, AI dan Blockchain";
-const PROFILE_INITIALS = "NZ";
+const PROFILE_INITIALS = "DH";
 const BANNER_IMAGE = "/banner.png";
 
 export function Hero() {
@@ -54,7 +54,7 @@ export function Hero() {
         {/* Banner photo */}
         <motion.img
           src={BANNER_IMAGE}
-          alt="Banner Nadya Zahira"
+          alt="Banner Dadang Hamdani"
           style={{ x: imgX, y: imgY }}
           className="absolute inset-0 h-[112%] w-[112%] -translate-x-[5.35%] -translate-y-[5.35%] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           draggable={false}

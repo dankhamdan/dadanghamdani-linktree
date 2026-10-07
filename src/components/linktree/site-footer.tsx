@@ -40,7 +40,7 @@ export function SiteFooter() {
         </nav>
 
         <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
-          © {year} Nadya Zahira
+          © {year} Dadang Hamdani
           <span className="mx-1 hidden h-1 w-1 rounded-full bg-border sm:inline-block" />
           <span className="hidden items-center gap-1 sm:inline-flex">
             <motion.span

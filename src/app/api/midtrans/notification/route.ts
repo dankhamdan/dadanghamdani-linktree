@@ -18,7 +18,7 @@ export const dynamic = "force-dynamic";
  *
  * Set up URL ini di dashboard Midtrans:
  *   Settings → Configuration → Payment Notification URL
- *   https://nadyazahira.my.id/api/midtrans/notification
+ *   https://dadanghamdani.my.id/api/midtrans/notification
  */
 export async function POST(req: NextRequest) {
   if (!midtransConfig.isConfigured) {
