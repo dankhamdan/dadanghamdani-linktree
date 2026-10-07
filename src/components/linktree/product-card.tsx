@@ -96,7 +96,7 @@ export function ProductCard({ product }: { product: Product }) {
             >
               {formatRupiah(product.price)}
             </span>
-            {hasDiscount && (
+            {hasDiscount && product.oldPrice != null && (
               <span className="text-xs text-muted-foreground line-through">
                 {formatRupiah(product.oldPrice)}
               </span>

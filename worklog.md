@@ -91,3 +91,31 @@ Stage Summary:
 - Order ID format: NZ-{productId}-{timestamp36}-{rand4}
 - Dokumentasi lengkap di download/MIDTRANS_SETUP.md
 - Status: kode 100% siap, menunggu user isi credential Midtrans asli untuk testing/live
+
+---
+Task ID: 5
+Agent: main (Super Z)
+Task: Siapkan project untuk deploy ke Vercel.
+
+Work Log:
+- Update next.config.ts: hapus output "standalone" (Vercel handle sendiri), enable reactStrictMode, ignoreBuildErrors=false (strict type checking), tambah allowedDevOrigins untuk preview domain
+- Update tsconfig.json: exclude examples/tests/mini-services/skills/scripts folders yang punya type errors tapi bukan bagian dari app
+- Fix type error di product-card.tsx: tambah null check `product.oldPrice != null` sebelum formatRupiah()
+- Update package.json: build command jadi `next build` (bukan standalone copy), start command `next start`, tambah postinstall `prisma generate || true` supaya Vercel auto-generate Prisma client
+- Buat vercel.json: framework nextjs, buildCommand "next build", installCommand "bun install", regions ["sin1"] (Singapore — terdekat Indonesia), security headers (X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy), cache header untuk banner.png (1 year immutable)
+- Update .gitignore: allow .env.example di-commit (tambah `!.env.example` exception)
+- Update public/robots.txt: tambah sitemap reference ke nadyazahira.my.id
+- Install vercel@62.7.0 CLI sebagai devDependency
+- Verifikasi: lint clean (0 errors), next build berhasil (4 routes: /, /api, /api/midtrans/create-transaction, /api/midtrans/notification)
+- Buat panduan lengkap: download/DEPLOY_VERCEL.md (Opsi A: Dashboard, Opsi B: CLI, langkah push GitHub, set env vars, hubungkan domain, test, troubleshooting)
+
+Stage Summary:
+- Project 100% siap deploy ke Vercel
+- Build verified: next build sukses, lint clean
+- Config siap: vercel.json (region Singapore), next.config.ts (Vercel-optimized), tsconfig.json (exclude non-app folders), package.json (postinstall prisma generate)
+- File siap: public/banner.png (245KB), public/robots.txt (dengan sitemap), .env.example (template), .gitignore (proper)
+- Prisma: tidak dipakai di route manapun, jadi SQLite bukan blocker. Postinstall hook ensure prisma generate jalan di Vercel. Dokumentasi cara switch ke Vercel Postgres/Neon/Supabase kalau nanti butuh DB.
+- 2 opsi deploy didokumentasikan: Dashboard (via GitHub) atau CLI (vercel command)
+- Domain setup didokumentasikan: nameserver atau A record + CNAME
+- Env vars didokumentasikan: 4 vars (MIDTRANS_ENVIRONMENT, MIDTRANS_SERVER_KEY, NEXT_PUBLIC_MIDTRANS_CLIENT_KEY, NEXT_PUBLIC_SITE_URL) dengan environment assignment
+- Troubleshooting guide: build fail, Midtrans popup, domain, 404 terms/privacy
