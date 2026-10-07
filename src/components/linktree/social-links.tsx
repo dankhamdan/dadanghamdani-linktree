@@ -4,6 +4,7 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import { Instagram, Youtube, Facebook } from "lucide-react";
 import type { SocialLink } from "@/lib/products";
+import { MagneticButton } from "./magnetic-button";
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -41,34 +42,48 @@ export function SocialLinks({
       aria-label="Tautan media sosial"
       className="mt-5 flex items-center justify-center gap-3"
     >
-      {socials.map((s) => (
-        <motion.a
+      {socials.map((s, i) => (
+        <motion.div
           key={s.label}
-          href={s.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={s.label}
-          title={s.label}
-          whileHover={{ y: -3, scale: 1.06 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ type: "spring", stiffness: 400, damping: 18 }}
-          className="group relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-colors hover:border-transparent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-          style={{
-            // Use CSS variable so we can apply brand color on hover
-            ["--social-brand" as string]: s.brand,
+          initial={{ opacity: 0, scale: 0.6 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: 0.4,
+            delay: 0.25 + i * 0.07,
+            ease: [0.22, 1, 0.36, 1],
           }}
         >
-          {/* color blob revealed on hover */}
-          <span
-            className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-            style={{ backgroundColor: s.brand }}
-            aria-hidden
-          />
-          <SocialIcon
-            icon={s.icon}
-            className="relative h-[18px] w-[18px] transition-colors"
-          />
-        </motion.a>
+          <MagneticButton strength={0.4}>
+            <motion.a
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={s.label}
+              title={s.label}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.94 }}
+              transition={{ type: "spring", stiffness: 400, damping: 18 }}
+              className="group relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-colors hover:border-transparent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              {/* color blob revealed on hover */}
+              <span
+                className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                style={{ backgroundColor: s.brand }}
+                aria-hidden
+              />
+              {/* subtle ring on hover */}
+              <span
+                className="absolute -inset-1 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                style={{ boxShadow: `0 0 18px 2px ${s.brand}66` }}
+                aria-hidden
+              />
+              <SocialIcon
+                icon={s.icon}
+                className="relative h-[18px] w-[18px] transition-colors"
+              />
+            </motion.a>
+          </MagneticButton>
+        </motion.div>
       ))}
     </motion.nav>
   );

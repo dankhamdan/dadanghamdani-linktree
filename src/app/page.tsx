@@ -1,9 +1,11 @@
 "use client";
 
 import { Hero } from "@/components/linktree/hero";
+import { MarqueeStrip } from "@/components/linktree/marquee-strip";
 import { SocialLinks } from "@/components/linktree/social-links";
 import { ProductList } from "@/components/linktree/product-list";
 import { SiteFooter } from "@/components/linktree/site-footer";
+import { ScrollToTop } from "@/components/linktree/scroll-to-top";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { products, socials } from "@/lib/products";
 
@@ -20,12 +22,16 @@ export default function Home() {
 
         <SocialLinks socials={socials} />
 
+        <MarqueeStrip />
+
         <ProductList products={products} />
       </main>
 
       <div className="mx-auto w-full max-w-xl px-4 sm:px-5">
         <SiteFooter />
       </div>
+
+      <ScrollToTop />
     </div>
   );
 }

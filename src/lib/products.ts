@@ -6,8 +6,18 @@ export type Product = {
   price: number | null; // null = Gratis
   oldPrice?: number | null;
   badge?: string; // e.g. "Sisa 5"
-  url: string;
+  url: string; // halaman detail produk
+  paymentUrl: string; // link checkout langsung (payment link)
 };
+
+/**
+ * Helper: bangun URL payment link Mayar.id berdasarkan slug produk.
+ * Ganti base URL dengan akun Mayar milikmu saat production.
+ */
+const mayarBase = "https://nadyazahira.my.id/checkout";
+function paymentUrl(slug: string, id: string): string {
+  return `${mayarBase}/${slug}?ref=linktree&p=${id}`;
+}
 
 /**
  * Daftar produk yang ditampilkan di halaman linktree.
@@ -26,6 +36,7 @@ export const products: Product[] = [
     price: 289000,
     badge: "Sisa 5",
     url: "https://yusrilasrul.site/products/formula-15-hari-bisa-bangun-web-dan-mobile-app-start-12-oktober",
+    paymentUrl: paymentUrl("formula-15-hari-bisa-bangun-web-dan-mobile-app-start-12-oktober", "1"),
   },
   {
     id: "2",
@@ -37,6 +48,7 @@ export const products: Product[] = [
     oldPrice: 78000,
     price: 59000,
     url: "https://yusrilasrul.site/products/pos-offline-pro-sourcecode-aplikasi-kasir-offline-fitur-lengkap-untuk-semua-usaha",
+    paymentUrl: paymentUrl("pos-offline-pro-sourcecode-aplikasi-kasir-offline-fitur-lengkap-untuk-semua-usaha", "2"),
   },
   {
     id: "3",
@@ -47,6 +59,7 @@ export const products: Product[] = [
     oldPrice: 149000,
     price: 89000,
     url: "https://yusrilasrul.site/products/ebook-terlengkap-web3-dari-nol-sampai-bisa-bikin-aplikasi-web3",
+    paymentUrl: paymentUrl("ebook-terlengkap-web3-dari-nol-sampai-bisa-bikin-aplikasi-web3", "3"),
   },
   {
     id: "4",
@@ -57,6 +70,7 @@ export const products: Product[] = [
       "https://yusrilasrul.site/assets/uploads/products/0bc5b9ed5d1fc41c4ac1a5b691b314f6.webp",
     price: 24000,
     url: "https://yusrilasrul.site/products/source-code-chatbot-whatsapp-ai-siap-pakai-cocok-untuk-cs-otomatis-usaha-kecil-menengah-settingan-chatbot-aman",
+    paymentUrl: paymentUrl("source-code-chatbot-whatsapp-ai-siap-pakai-cocok-untuk-cs-otomatis-usaha-kecil-menengah-settingan-chatbot-aman", "4"),
   },
   {
     id: "5",
@@ -67,6 +81,7 @@ export const products: Product[] = [
       "https://yusrilasrul.site/assets/uploads/products/443225e4219fc636ec828709348cef16.webp",
     price: 24000,
     url: "https://yusrilasrul.site/products/laundry-pos-offline-aplikasi-kasir-khusus-laundry-yang-100-offline-datanya-tersimpan-aman-di-hp-anda-sekali-bayar",
+    paymentUrl: paymentUrl("laundry-pos-offline-aplikasi-kasir-khusus-laundry-yang-100-offline-datanya-tersimpan-aman-di-hp-anda-sekali-bayar", "5"),
   },
   {
     id: "6",
@@ -76,6 +91,7 @@ export const products: Product[] = [
       "https://yusrilasrul.site/assets/uploads/products/255a34db72866f7b66fa0900ed9b317e.webp",
     price: null,
     url: "https://yusrilasrul.site/products/source-code-web-game-3d-shooter",
+    paymentUrl: paymentUrl("source-code-web-game-3d-shooter", "6"),
   },
   {
     id: "7",
@@ -87,6 +103,7 @@ export const products: Product[] = [
     oldPrice: 49000,
     price: 14000,
     url: "https://yusrilasrul.site/products/finance-bot-telegram-pencatat-keuangan-pribadi-otomatis-via-chat",
+    paymentUrl: paymentUrl("finance-bot-telegram-pencatat-keuangan-pribadi-otomatis-via-chat", "7"),
   },
   {
     id: "8",
@@ -96,6 +113,7 @@ export const products: Product[] = [
       "https://yusrilasrul.site/assets/uploads/products/c0d03d0a903216832f8d862a966bed82.webp",
     price: null,
     url: "https://yusrilasrul.site/products/platform-belajar-online-teknologi-web3-dan-blockchain",
+    paymentUrl: paymentUrl("platform-belajar-online-teknologi-web3-dan-blockchain", "8"),
   },
 ];
 

@@ -250,7 +250,50 @@
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .cover-gradient,
-  .avatar-ring {
+  .avatar-ring,
+  .animate-marquee {
     animation: none !important;
   }
+}
+
+/* Pulse glow around avatar */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.08);
+  }
+}
+
+/* Marquee for topic ticker */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 22s linear infinite;
+}
+.marquee-pause:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* Shimmer for skeletons / loading */
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+/* Soft glow ring used by CTA buttons */
+.glow-ring {
+  box-shadow:
+    0 0 0 0 oklch(0.62 0.23 12 / 0.45),
+    0 8px 20px -8px oklch(0.62 0.23 12 / 0.55);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.glow-ring:hover {
+  box-shadow:
+    0 0 0 6px oklch(0.62 0.23 12 / 0.12),
+    0 12px 28px -8px oklch(0.62 0.23 12 / 0.7);
 }
